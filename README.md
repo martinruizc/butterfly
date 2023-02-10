@@ -8,7 +8,7 @@ To run the back-end:
 
 | Variable | Example | Descripction |
 | - | - | - |
-| DB_URL | Data base host | connection
+| DB_URL | MongoDB Host | Data base host
 | PORT | 3000 | Port to run the app
 
 5. Import the data: ``npm run data:import``
