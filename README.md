@@ -15,7 +15,7 @@ To run the back-end:
 6. Run the server: ``npm start``
 
 
-To run the fron-end: 
+To run the front-end: 
 
 From the root directory
 1. ``cd frontend``
