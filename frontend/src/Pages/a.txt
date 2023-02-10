@@ -1,0 +1,4 @@
+<div className='header-mood'>
+                <p>Did you make a mistake? Please select your correct mood: </p>
+                <MoodComponent/>
+            </div>
