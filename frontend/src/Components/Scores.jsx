@@ -1,31 +1,64 @@
-import images from '../assets/images'
+import React, { useMemo, useState } from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+export const RatingComponent = ({ count, rating, color, onRating }) => {
+  const [hoverRating, setHoverRating] = useState(0);
 
+  const getColor = (index) => {
+    if (hoverRating >= index) {
+      return color.filled;
+    } else if (!hoverRating && rating >= index) {
+      return color.filled;
+    }
 
+    return color.unfilled;
+  };
 
-export const Scores = () => {
-    return (
-        <div>
-            <div className="score-bar">
-                <img src={images.StarIcon} alt="" className='star-1' />
-                <img src={images.StarIcon} alt="" className='star-2' />
-                <img src={images.StarIcon} alt="" className='star-3' />
-                <img src={images.StarIcon} alt="" className='star-4' />
-                <img src={images.StarIcon} alt="" className='star-5' />
-                <img src={images.StarIcon} alt="" className='star-6' />
-                <img src={images.StarIcon} alt="" className='star-7' />
-                <img src={images.StarIcon} alt="" className='star-8' />
-                <img src={images.StarIcon} alt="" className='star-9' />
-                <img src={images.StarIcon} alt="" className='star-10' />
+  const starRating = useMemo(() => {
+    return Array(count)
+      .fill(0)
+      .map((_, i) => i + 1)
+      .map((idx) => (
+        <FontAwesomeIcon
+          key={idx}
+          className="cursor-pointer"
+          icon="star"
+          onClick={() => onRating(idx)}
+          style={{ color: getColor(idx) }}
+          onMouseEnter={() => setHoverRating(idx)}
+          onMouseLeave={() => setHoverRating(0)}
+        />
+      ));
+  }, [count, rating, hoverRating]);
 
-
-            </div>
-            <div className="score-labels">
-                <p>Disagree</p>
-                <p>Agree</p>
-
-            </div>
+  return (
+    <div id="raiting">
+        <div className="rating-star">{starRating}</div>
+        
+        <div className="flex-p">
+            <p>Desagree</p>
+            <p>Agree</p>
         </div>
+    </div>
+    
+  )
+};
 
-    )
-}
+RatingComponent.propTypes = {
+  count: PropTypes.number,
+  rating: PropTypes.number,
+  onChange: PropTypes.func,
+  color: PropTypes.any
+};
+
+RatingComponent.defaultProps = {
+  count: 10,
+  rating: 0,
+  color: {
+    filled: "#a51191",
+    unfilled: "#DCDCDC",
+  },
+};
+
+

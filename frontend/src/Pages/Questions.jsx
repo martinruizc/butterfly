@@ -1,12 +1,13 @@
-import Select from 'react-select'
-import {Link} from 'react-router-dom'
-import { useState } from "react"
-import { useEffect } from "react"
-import axios from 'axios'
 
+import {Link} from 'react-router-dom'
+import { useState, useEffect } from "react"
+import axios from 'axios'
 import { randomQuestions } from "./helpers/randomQuestions"
+
 import { MoodComponent } from '../Components/Mood'
 import { MoodSelesctedComponent } from '../Components/MoodSelected'
+import  {RatingComponent} from '../Components/Scores'
+
 
 
 const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
@@ -16,7 +17,7 @@ export const QuestionsComponent = () => {
     const [questions, setQuestiones] = useState([])
     const [selector, setSelector] = useState()
     const [comment, setComment] = useState(false)
-
+    const [rating, setRating] = useState(0)
 
 
     const getQuestions = async() =>{
@@ -58,10 +59,11 @@ export const QuestionsComponent = () => {
                         <div>
                             <h3>{ques.question}</h3>
                         </div>
-                            <Select
-                                options={ ratings.map(item => ({label: item, value: item})) }
-                                onChange={ handleSelectChange }
-                            />
+
+
+                        <RatingComponent rating={rating} onRating={(rate) => setRating(rate)} />
+
+
                         {
                             (comment) && (
                                 <textarea
