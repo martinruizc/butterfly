@@ -11,6 +11,10 @@ export const MoodSelesctedComponent = ({value}) =>{
 
     const {src, text} = valueMood
 
+    useEffect(()=> {
+        setValueMood(getImageValue(value))
+    },[])
+
 
     const getImageValue = (value) => {
         const data = (value === 1) ? {
@@ -33,19 +37,9 @@ export const MoodSelesctedComponent = ({value}) =>{
             text: 'Choose'
         }
         
-        
-       
         return data
     }
 
-
-    useEffect(()=> {
-        setValueMood(getImageValue(value))
-    },[])
-
-
-
-    
         
     return (
         <div className='flex'>
@@ -53,10 +47,6 @@ export const MoodSelesctedComponent = ({value}) =>{
             <p>{text}</p>
             <img src={src} className='mood'/>
         </div> 
-
-        
-
         
     )
-
 }

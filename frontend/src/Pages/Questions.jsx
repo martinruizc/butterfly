@@ -9,9 +9,6 @@ import { MoodSelesctedComponent } from '../Components/MoodSelected'
 import  {RatingComponent} from '../Components/Scores'
 
 
-
-const ratings = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
-
 export const QuestionsComponent = () => {
 
     const [questions, setQuestiones] = useState([])
@@ -48,8 +45,8 @@ export const QuestionsComponent = () => {
         <div id="questionPage">
 
             <MoodSelesctedComponent value={3}/>
-        <form>
             <h3>Do you agree with the following statements:</h3>
+        <form>
             {
                 questions.map((ques) => (
                     <div key={ques._id} id='card-ques'>

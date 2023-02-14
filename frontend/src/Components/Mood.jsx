@@ -1,7 +1,5 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
 import images from '../assets/images'
-import { QuestionsComponent } from "../Pages/Questions"
 
 
 export const MoodComponent = () => {
