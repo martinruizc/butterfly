@@ -1,16 +1,18 @@
 import images from '../assets/images'
 import { useState } from "react"
 import { useEffect } from 'react'
+import { getmood } from './helpers/mood'
 
+const value = getmood()
 
-export const MoodSelesctedComponent = ({value}) =>{
+export const MoodSelesctedComponent = (getmood) =>{
     const [valueMood, setValueMood] = useState({
         src: '',
         text: '',
     })
 
     const {src, text} = valueMood
-
+    
     useEffect(()=> {
         setValueMood(getImageValue(value))
     },[])

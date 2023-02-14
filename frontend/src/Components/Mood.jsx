@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom"
 import images from '../assets/images'
+import { getmood } from "./helpers/mood"
 
 
 export const MoodComponent = () => {
 
     const clickHandler = ({target}) => {
-        const data = target.name  
-        console.log(data)
-        return data
-
+        return target.name  
     }
 
     return(
@@ -37,7 +35,7 @@ export const MoodComponent = () => {
 
     
     </div>
-
+    
 
     )
 }
