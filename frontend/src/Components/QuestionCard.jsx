@@ -8,6 +8,7 @@ export const QuestionCard = ({question}) => {
 
 
 
+
   return (
     <Card className="my-2 p-3 rounded" style={{ width: '35rem' }}>
       <Card.Body>
@@ -18,10 +19,13 @@ export const QuestionCard = ({question}) => {
           {question.question}
         </Card.Text>
 
-        <RatingComponent rating={rating} onRating={(rate) => setRating(rate)}  />
+        <RatingComponent rating={rating} onRating={(rate) => setRating(rate)}/>
 
       </Card.Body>
-
+      <Card.Link>
+        <p>Add comment </p>
+      </Card.Link>
+ 
 
     </Card>
 

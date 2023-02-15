@@ -1,54 +1,39 @@
 import images from '../assets/images'
-import { useState } from "react"
-import { useEffect } from 'react'
-import { getmood } from './helpers/mood'
-
-const value = getmood()
-
-export const MoodSelesctedComponent = (getmood) =>{
-    const [valueMood, setValueMood] = useState({
-        src: '',
-        text: '',
-    })
-
-    const {src, text} = valueMood
-    
-    useEffect(()=> {
-        setValueMood(getImageValue(value))
-    },[])
+import { useState, useEffect } from "react"
+import { useParams } from 'react-router-dom'
+import { getMoodDetail } from './helpers/getMoodDetail'
+import { Card, Col, Row } from 'react-bootstrap'
 
 
-    const getImageValue = (value) => {
-        const data = (value === 1) ? {
-            src: images.VeryUnhappy,
-            text: 'Oops, something needs to change. Thank you for your Feedback'
-        } : (value === 2) ? {
-            src: images.Unhappy,
-            text: 'Mmmmh, things should improve. Thank you for your Feedback.'
-        } : (value === 3) ? {
-            src:  images.neutral,
-            text: 'OK… things could be better. Thank you for your Feedback'
-        } : (value === 4) ? {
-            src:  images.happy,
-            text: ' Great! Thank you for your Feedback.'
-        } : (value === 5) ? {
-            src: images.VeryHappy,
-            text: 'Awesome! Thank you for your Feedback.'
-        } : {
-            src: null,
-            text: 'Choose'
-        }
-        
-        return data
+
+export const MoodSelesctedComponent = () =>{
+
+    const {moodId} = useParams()
+    const [mood, SetMood] = useState([])
+
+    const getData = async (id) => {
+        const data = await getMoodDetail(id)
+        SetMood(data)
     }
+
+    useEffect(()=> {
+        getData(moodId)
+    },[])    
+
+
+
+    
 
         
     return (
-        <div className='flex'>
-            <img src={images.EditIcon} alt="" />
-            <p>{text}</p>
-            <img src={src} className='mood'/>
-        </div> 
+        <Col className='ml-5'>
+            <Row>
+                <p>{mood.message}</p>
+            </Row>
+            <Row>
+                <img src={mood.image} alt={mood.name} />
+            </Row>
+        </Col>
         
     )
 }

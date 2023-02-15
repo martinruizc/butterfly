@@ -202,3 +202,15 @@ textarea {
   flex-direction: column; 
   flex-wrap: wrap;
   }
+
+.column {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;
+}
+
+.fs {
+  border: none;
+  margin: 30px;
+  
+}
